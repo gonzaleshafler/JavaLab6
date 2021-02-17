@@ -2,7 +2,6 @@ package com.company;
 
 public class Lab6ArrayProcessor implements ArrayProcessor{
 
-
     @Override
     public double calculate(double[] array) {
         double result=0;
@@ -31,11 +30,11 @@ public class Lab6ArrayProcessor implements ArrayProcessor{
 
     @Override
     public void processArray(double[] array) {
-
+        System.out.println(calculate(array));
     }
 
     @Override
     public void processArray(double[][] array) {
-
+        System.out.println(calculate(array));
     }
 }

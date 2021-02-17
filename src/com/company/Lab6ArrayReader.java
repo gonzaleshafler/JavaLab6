@@ -33,7 +33,7 @@ public class Lab6ArrayReader implements DoubleArrayReader {
             int n = Integer.parseInt(reader.readLine());
             double[] arr = new double[n];
             String s=reader.readLine();
-            String sArr[]=s.trim().split("\\s+");
+            String[] sArr =s.trim().split("\\s+");
             for (int i=0;i<n;i++)
             {
                 arr[i]=Double.parseDouble(sArr[i]);
@@ -66,22 +66,25 @@ public class Lab6ArrayReader implements DoubleArrayReader {
     }
 
     @Override
-    public double[][] readTwoDimensionalArray(String fileName) {
-        try (Scanner reader= new Scanner(new File(fileName))) {
-            int n= reader.nextInt();
+    public double[][] readTwoDimensionalArray(String fileName)
+    {
+        try (BufferedReader reader= Files.newBufferedReader(Paths.get(fileName))) {
+            int n= Integer.parseInt(reader.readLine());
             double[][] arr = new double[n][n];
-            for (int i = 0; i < arr.length; i++) {
-                for (int j=0;j< arr[i].length;j++)
-                {
-                    arr[i][j]=reader.nextDouble();
-                }
-            }
+            String[] sArr;
+
+           for (int i=0;i<arr.length;i++)
+           {
+               sArr=reader.readLine().trim().split("\\s+");
+               for (int j=0;j<arr[i].length;j++)
+               {
+                   arr[i][j]=Double.parseDouble(sArr[j]);
+               }
+           }
             return arr;
         } catch (IOException ex) {
             System.err.println("Error reading file");
             return null;
         }
     }
-
-
 }
